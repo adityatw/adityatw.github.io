@@ -14,7 +14,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
     
     //Read the data
-    d3.csv("http://localhost:8000/d3practice/fossil_fuels/data/fossil_fuels.csv", 
+    d3.csv("../data/fossil_fuels.csv", 
     
       function(d){
       return { Entity: d.Entity, Year : d3.timeParse("%Y")(d.Year), primary_energy : d.percent_electricity }

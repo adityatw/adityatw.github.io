@@ -30,7 +30,7 @@ var tooltip = d3.select("#myTooltip")
 .style("padding", "10px");
 
 //Read the data
-d3.csv('http://localhost:8000/d3practice/fossil_fuels/data/fossil_fuels.csv', function(data) {
+d3.csv('../data/fossil_fuels.csv', function(data) {
 
 data = data.filter(function (d) {
     return d.Entity == 'United States' || d.Entity == 'Canada' || d.Entity == 'Japan' || d.Entity == 'Italy' || d.Entity == 'France' || d.Entity == 'United Kingdom' || d.Entity == 'Germany';
