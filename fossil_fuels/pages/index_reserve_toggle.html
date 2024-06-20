@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="../css/style.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<title>World Reserve Visualization</title>
+
+<div class="content">
+<h1>World Reserve of Coal, Oil, and Natural Gas</h1>
+<br>
+<div class="bullet-content" style="width: 1000px">
+    <ul>
+        <li>To end this analysis, let's review the 2022 world reserve of fossil fuels. Use the buttons to toggle between Coal, Oil, and Gas. </span></li>
+        <li>It appears there is not a single country that has the highest reserve of all three fossil fuel types we discussed. </span></li>
+        <li>The United States remains the country with the highest coal reserve in the world, while Venezuela and Russia retains the highest reserve of oil and natural gas respectively.</li>
+    </ul>
+</div>
+
+<div class="toggle-container">
+  <button id="coal-btn">Coal</button>
+  <button id="oil-btn">Oil</button>
+  <button id="gas-btn">Natural Gas</button>
+</div>
+
+<div id="chart"></div>
+
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="../js/tooltip.js"></script>
+
+
+<script>
+// Function to load and display a specific chart
+function loadChart(chartId, scriptPath) {
+  d3.select("#chart").html(""); // Clear existing content
+  const script = document.createElement("script");
+  script.src = scriptPath;
+  script.async = false;  // Add async attribute
+  document.body.appendChild(script);
+}
+
+// Event listeners for toggle buttons
+const coalBtn = document.getElementById("coal-btn");
+coalBtn.addEventListener("click", () => loadChart("chart", "../js/coalres.js"));
+
+const oilBtn = document.getElementById("oil-btn");
+oilBtn.addEventListener("click", () => loadChart("chart", "../js/oilres.js"));
+
+const gasBtn = document.getElementById("gas-btn");
+gasBtn.addEventListener("click", () => loadChart("chart", "../js/natgasres.js"));
+
+// Load the initial chart (coal by default) - already loaded by including coalres.js first
+    // Load the initial chart (coal by default)
+    document.addEventListener("DOMContentLoaded", () => {
+      loadChart("chart", "../js/coalres.js");
+    });
+</script>
+
+<div class="footer" style="width: 1000px">
+    Creator: Aditya Wresniyandaka - CS 416 Data Visualization, University of Illinois Urbana-Champaign, Summer 2024
+    </div>
+
+<div class="navigation">
+    <button class="previous" onclick="document.location.href='index_primfuel.html'">Previous</button>
+    <button class="next" onclick="document.location.href='index.html'">Back to Main</button>
+    </div>
+</div>
+</body>
+</html>

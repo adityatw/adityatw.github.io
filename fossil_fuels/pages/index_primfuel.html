@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="../css/style.css">
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<title>Percent Primary Energy Consumption from Fossil Fuels</title>
+
+<div class="content">
+<h1>Percentage of primary energy consumption from fossil fuels by country</h1>
+<br>
+<div class="bullet-content" style="width: 1000px">
+    <ul>
+        <li>On this page, you can explore the trend of energy consumption from fossil fuels in different countries around the world. Not every country has data for the full year range.</span></li>
+        <li>Use the drop down selector to choose the country you are interested in. </span></li>
+        <li>Use your mouse to brush horizontally to zoom-in a year range. Double-click to reset the view.</li>
+    </ul>
+</div>
+<!-- Initialize a select dropdown -->
+<select id="selectDropdown"></select>
+
+<!-- Create a div where the graph will take place -->
+<div id="chart"></div>
+
+<!-- Color Scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="../js/primfuel.js"></script>
+
+<div class="footer" style="width: 1000px">
+    Creator: Aditya Wresniyandaka - CS 416 Data Visualization, University of Illinois Urbana-Champaign, Summer 2024
+    </div>
+
+<div class="navigation">
+    <button class="previous" class="next" onclick="document.location.href='index_g7.html'">Previous</button>
+    <button class="next" class="next" onclick="document.location.href='index_reserve_toggle.html'">Next</button>
+    </div>
+</div>
+</html>
