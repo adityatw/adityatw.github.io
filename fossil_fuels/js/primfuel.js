@@ -33,14 +33,14 @@
     
         // console.log(allGroup)
 
-        // This is where the parameter and trigger work together to change the scene
+        // This is where the PARAMETER and TRIGGER work together to change the scene
         d3.select("#selectDropdown")
           .selectAll('theCountries')
         //dropdownSelection.selectAll("option")
             .data(allGroup)
             .enter()
             .append('option')
-          .text(function (d) { return d; }) // the country displayed on the dropdown - this is the parameter value for the trigger
+          .text(function (d) { return d; }) // the country displayed on the dropdown - this is the PARAMETER value for the TRIGGER
           .attr("value", function (d) { return d; }) // the actual values corresponding to the country selected in the dropdown
           .style("visibility", "visible");
     
