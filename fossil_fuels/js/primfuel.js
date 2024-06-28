@@ -23,7 +23,7 @@
       function(data) {
 
         // List of groups (here I have one group per column)
-        var allGroup = d3.map(data, function(d){return(d.Entity)}).keys()
+        var allGroup = d3.map(data, function(d){return(d.Entity)}).keys() // the countries to populate the dropdown
 
         var dropdownGroup = svg.append("g")
           .attr("transform", "translate(" + margin.left+ "," + margin.top + ")");
@@ -33,15 +33,15 @@
     
         // console.log(allGroup)
 
-        // add the options to the dropdown
+        // This is where the parameter and trigger work together to change the scene
         d3.select("#selectDropdown")
-          .selectAll('myOptions')
+          .selectAll('theCountries')
         //dropdownSelection.selectAll("option")
             .data(allGroup)
             .enter()
             .append('option')
-          .text(function (d) { return d; }) // text showed in the menu
-          .attr("value", function (d) { return d; }) // corresponding value returned by the button
+          .text(function (d) { return d; }) // the country displayed on the dropdown - this is the parameter value for the trigger
+          .attr("value", function (d) { return d; }) // the actual values corresponding to the country selected in the dropdown
           .style("visibility", "visible");
     
         // A color scale: one color for each group
@@ -76,7 +76,7 @@
           // svg.append("g")
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(x))
-          xAxis.append('text')
+        xAxis.append('text')
           .attr('class', 'axis-label')
           .text('Year')
           .attr('x', margin.left + (width - margin.left - margin.right) / 2)
@@ -105,8 +105,7 @@
           .attr('y', -50) 
 
     
-        // Add a clipPath: everything out of this area won't be drawn.
-        var clip = svg.append("defs").append("svg:clipPath")
+          var clip = svg.append("defs").append("svg:clipPath")
             .attr("id", "clip")
             .append("svg:rect")
             .attr("width", width )
@@ -115,9 +114,9 @@
             .attr("y", 0);
 
         // Add brushing
-        var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-            .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-            .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
+        var brush = d3.brushX()                   
+            .extent( [ [0,0], [width,height] ] )  
+            .on("end", updateChart)               // Each time the brush selection changes, we trigger the 'updateChart' function
             
         var numberFormat = d3.format(".1f");
 
@@ -250,7 +249,7 @@
     });
         }
     
-        // When the button is changed, run the update function
+        // THIS IS A TRIGGER - When the button is changed, run the update function to update the scene
         d3.select("#selectDropdown").on("change", function(d) {
             // recover the option that has been chosen
             circleGroup.selectAll("circle").remove()
