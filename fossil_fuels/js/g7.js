@@ -77,10 +77,10 @@ data = data.filter(function (d) {
 const xScale = d3.scaleTime().range([0,width]);
 const yScale = d3.scaleLinear().rangeRound([height, 0]);
 
-  const tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0)
-    .style("position", "absolute");
+const tooltip = d3.select("body").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0)
+  .style("position", "absolute");
 
     // // Draw the line
     // svg.selectAll(".line")
@@ -97,12 +97,12 @@ const yScale = d3.scaleLinear().rangeRound([height, 0]);
     //         (d.values)
     //    })
 
-        // Draw the line
-        var line = svg.selectAll(".line")
-        .data(nested_data)
-        .enter()
-        .append("g")
-        .attr("class", "line");
+    // Draw the line
+    var line = svg.selectAll(".line")
+    .data(nested_data)
+    .enter()
+    .append("g")
+    .attr("class", "line");
 
     line.append("path")
         .attr("fill", "none")
@@ -148,7 +148,58 @@ const yScale = d3.scaleLinear().rangeRound([height, 0]);
         .text(function(d) { return d.key; });
 
 
+    // Add an annotation for the highest point, which is Japan
+    var japanData = data.filter(function(d) { return d.Entity === "Japan"; });
+    var highestJapanPoint = d3.max(japanData, function(d) { return +d.percent_electricity; });
+    var highestJapanEntry = japanData.find(function(d) { return +d.percent_electricity === highestJapanPoint; });
+
+    console.log(highestJapanEntry.Year, highestJapanPoint)
+
+       // Calculate annotation position
+    // var annotationX = xScale(highestJapanEntry.Year) + 5; 
+    // var annotationY = yScale(highestJapanPoint) - 5; 
+
+    var annotationX = 480
+    var annotationY = 20
+
     var numberFormat = d3.format(".1f");
+    // Define annotation text
+    var annotationText = "Highest: " + numberFormat(highestJapanPoint) + "%, Japan in " + highestJapanEntry.Year + ".";
+
+    const annotationGroup = svg.append("g");
+
+    annotationGroup.append("rect")
+      .attr("x", annotationX - 20)  
+      .attr("y", annotationY - 15)  
+      .attr("width", 260)  
+      .attr("height", 30)  
+      .attr("rx", 5)  
+      .attr("ry", 5)
+      .attr("fill", "#f5f5f5")
+      .attr("stroke", "black")
+      .attr("stroke-width", 1);
+    
+    annotationGroup.append("text")
+      .attr("x", annotationX-26)
+      .attr("y", annotationY)  
+      .attr("text-anchor", "left")
+      .selectAll("tspan")
+      .data(annotationText.split("\n")) 
+      .enter()
+      .append("tspan")
+        .text(d => d)
+        .attr("x", annotationX-15) 
+        .attr("dy", "0.4em");
+    
+    const lineConnector = d3.line()
+      .x(d => d.x)
+      .y(d => d.y);
+
+    annotationGroup.append("path")
+      .datum([{x: 560, y: 45}, {x:620, y:36}]) 
+      .attr("d", lineConnector)
+      .attr("stroke", "gray")
+      .attr("stroke-width", 1);
 
     //Add tooltip
     svg.selectAll("circle")

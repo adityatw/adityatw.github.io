@@ -22,10 +22,8 @@
 
       function(data) {
 
- 
         // List of groups (here I have one group per column)
         var allGroup = d3.map(data, function(d){return(d.Entity)}).keys()
-
 
         var dropdownGroup = svg.append("g")
           .attr("transform", "translate(" + margin.left+ "," + margin.top + ")");
