@@ -47,7 +47,7 @@
         // A color scale: one color for each group
         var myColor = d3.scaleOrdinal()
           .domain(allGroup)
-          .range(d3.schemeSet3);
+          .range(d3.schemeSet2);
     
         // Add X axis --> it is a date format
         var x = d3.scaleTime()
