@@ -75,7 +75,7 @@
         .call(d3.axisLeft(y))
         .append('text')
           .attr('class', 'axis-label')
-          .text('Resereve, in Trillion cubic feet (Tcf)')
+          .text('Reserve, in Trillion cubic feet (Tcf)')
           .attr('transform', 'rotate(-90)')
           .attr('x', -(margin.top + (height) / 2))
           .attr('y', -85) 

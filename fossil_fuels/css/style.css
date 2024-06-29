@@ -168,10 +168,9 @@ display: block;
 position: absolute;
 top: 50%;
 transform: translateY(-50%);
-/* Adjust left and width for image size and alignment */
 left: 0;
 width: 25px;
-height: 25px;  /* Adjust height as needed */
+height: 25px;  
 background-image: url(../img/grey_list_button.png);
 background-repeat: no-repeat;
 }
@@ -179,7 +178,7 @@ background-repeat: no-repeat;
 
 li {
 padding-left: 2em;
-margin-bottom: 1.5rem;
+margin-bottom: 1.2rem;
 margin-left: 3rem;
 }
 

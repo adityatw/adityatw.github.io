@@ -75,7 +75,7 @@
         .call(d3.axisLeft(y))
         .append('text')
           .attr('class', 'axis-label')
-          .text('Resereve, in Million metric tons (Mst)')
+          .text('Reserve, in Million metric tons (Mst)')
           .attr('transform', 'rotate(-90)')
           .attr('x', -(margin.top + (height) / 2))
           .attr('y', -100) 
