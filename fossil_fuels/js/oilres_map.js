@@ -90,6 +90,36 @@ d3.json("../js/world.topojson", function(error, world) {
     // .attr("stroke", "white")
     // .attr("stroke-width", 0.5);
 
+        // Create the annotation purely with D3.js
+        const annotationX = 300;
+        const annotationY = 310;
+    
+        const annotationText = "Oil";
+    
+        const annotationGroup = svg.append("g");
+    
+        annotationGroup.append("rect")
+        .attr("x", annotationX - 20)  
+        .attr("y", annotationY - 15)  
+        .attr("width", 80)  
+        .attr("height", 60)  
+        .attr("rx", 5)  
+        .attr("ry", 5)
+        .attr("fill", "#f5f5f5")
+        .attr("stroke", "black")
+        .attr("stroke-width", 1);
+    
+        annotationGroup.append("text")
+        .attr("x", annotationX-10)
+        .attr("y", annotationY)  
+        .attr("text-anchor", "middle")
+        .selectAll("tspan")
+        .data(annotationText.split("\n")) 
+        .enter()
+        .append("tspan")
+            .text(d => d)
+            .attr("x", annotationX+20) 
+            .attr("dy", "1.2em");
 
 
  });
