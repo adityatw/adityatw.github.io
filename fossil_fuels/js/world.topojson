@@ -319,7 +319,7 @@
         {
           "type": "Polygon",
           "properties": {
-            "name": "Central African Rep."
+            "name": "Central African Republic"
           },
           "id": "CAF",
           "arcs": [
@@ -488,7 +488,7 @@
         {
           "type": "Polygon",
           "properties": {
-            "name": "Dem. Rep. Congo"
+            "name": "Congo"
           },
           "id": "COD",
           "arcs": [
@@ -498,7 +498,7 @@
         {
           "type": "Polygon",
           "properties": {
-            "name": "Congo"
+            "name": "Republic of the Congo"
           },
           "id": "COG",
           "arcs": [
@@ -1729,7 +1729,7 @@
         {
           "type": "Polygon",
           "properties": {
-            "name": "S. Sudan"
+            "name": "South Sudan"
           },
           "id": "SSD",
           "arcs": [
