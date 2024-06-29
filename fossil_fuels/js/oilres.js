@@ -1,12 +1,12 @@
     // set the dimensions and margins of the graph
-    var margin = {top: 30, right: 30, bottom: 150, left: 200},
+    var margin = {top: 30, right: 30, bottom: 150, left: 100},
         width = 1000 - margin.left - margin.right,
         height = 450 - margin.top - margin.bottom;
     
     // append the svg object to the body of the page
     var svg = d3.select("#chart")
       .append("svg")
-        .attr("width", width + margin.left + margin.right+20)
+        .attr("width", width + margin.left + margin.right-20)
         .attr("height", height + margin.top + margin.bottom+25)
       .append("g")
         .attr("transform",
@@ -79,7 +79,7 @@
           .text('Reserve, in thousand barrels')
           .attr('transform', 'rotate(-90)')
           .attr('x', -(margin.top + (height) / 2))
-          .attr('y', -100) 
+          .attr('y', -85) 
 
 
             

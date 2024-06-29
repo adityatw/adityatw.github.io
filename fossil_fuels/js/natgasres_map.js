@@ -1,10 +1,10 @@
-var margin = { top: 20, right: 30, bottom: 150, left: 200 },
+var margin = { top: 20, right: 30, bottom: 150, left: 100 },
 width = 1000 - margin.left - margin.right,
-height = 450 - margin.top - margin.bottom;
+height = 475 - margin.top - margin.bottom;
 
 var svg = d3.select("#chart")
 .append("svg")
-.attr("width", width + margin.left + margin.right + 20)
+.attr("width", width + margin.left + margin.right - 20)
 .attr("height", height + margin.top + margin.bottom)
 .attr("fill", "white") // Set background color
 .append("g")
@@ -86,7 +86,7 @@ d3.json("../js/world.topojson", function(error, world) {
     // .attr("stroke-width", 0.5);
 
 // Create the annotation purely with D3.js
-const annotationX = 300;
+const annotationX = 330;
 const annotationY = 310;
 
 const annotationText = "Natural Gas";
