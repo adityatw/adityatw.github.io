@@ -36,7 +36,8 @@ d3.json("../js/world.topojson", function(error, world) {
     // console.log(joinedData)
     var colorScale = d3.scaleQuantize()
     .domain([d3.min(data, d => d.Reserve), d3.max(data, d => d.Reserve)])
-    .range(["#DEBEA2", "#C4A88F", "#887463", "#5E5145", "#453B32"]);
+    //.range(["#DEBEA2", "#C4A88F", "#887463", "#5E5145", "#453B32"]);
+    .range(["#FAE96D","#DBBD16","#DDBEA2","#DBB616",  "#C4A88F",  "#FABC3C","#DB5C16","#DB7E16" ]);
 
     var tooltip = svg.append("g")
     .attr("class", "tooltip")
