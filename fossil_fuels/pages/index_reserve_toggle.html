@@ -19,6 +19,7 @@
 
 <div class="toggle-container">
 <script>
+// These are the Parameter Values for the Trigger below
 const energyData = [
   { text: "Coal", id: "coal-btn", script: "../js/coalres.js" },
   { text: "Coal - Map", id: "coal-map", script: "../js/coalres_map.js" },
@@ -36,6 +37,7 @@ const energyData = [
 <script src="../js/topojson.min.js"></script>
 
 <script>
+// The Trigger is the click on a button that will change the scene based on the selected button
 energyData.forEach(data => {
   const button = document.createElement("button");
   button.textContent = data.text;
