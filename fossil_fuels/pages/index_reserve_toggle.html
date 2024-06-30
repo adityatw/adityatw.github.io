@@ -5,6 +5,7 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <title>World Reserve Visualization</title>
 <div class="tooltip" style="opacity: 0;"></div>
+
 <div class="content">
 <h1>World Reserve of Coal, Oil, and Natural Gas</h1>
 <br>
@@ -17,23 +18,37 @@
 </div>
 
 <div class="toggle-container">
-  <button id="coal-btn">Coal</button>
-  <button id="coal-map">Coal - Map</button>
-  <button id="oil-btn">Oil</button>
-  <button id="oil-map">Oil - Map</button>
-  <button id="gas-btn">Natural Gas</button>
-  <button id="gas-map">Natural Gas - Map</button>
+<script>
+const energyData = [
+  { text: "Coal", id: "coal-btn", script: "../js/coalres.js" },
+  { text: "Coal - Map", id: "coal-map", script: "../js/coalres_map.js" },
+  { text: "Oil", id: "oil-btn", script: "../js/oilres.js" },
+  { text: "Oil - Map", id: "oil-map", script: "../js/oilres_map.js" },
+  { text: "Natural Gas", id: "gas-btn", script: "../js/natgasres.js" },
+  { text: "Natural Gas - Map", id: "gas-map", script: "../js/natgasres_map.js" },
+];
+</script>
 </div>
 
-<!-- Create a div where the graph will take place -->
 <br>
 <div id="chart"></div>
 <script src="../js/tooltip.js"></script>
 <script src="../js/topojson.min.js"></script>
 
 <script>
-// Function to load and display a specific chart
+energyData.forEach(data => {
+  const button = document.createElement("button");
+  button.textContent = data.text;
+  button.id = data.id;
+  button.classList.add("energy-button"); 
+  button.addEventListener("click", () => loadChart("chart", data.script));
+  document.querySelector(".toggle-container").appendChild(button);
+});
+
 function loadChart(chartId, scriptPath) {
+  const chartContainer = d3.select("#chart");
+  chartContainer.selectAll(".chart").classed("hidden", true); // Add a 'hidden' class to all charts
+
   d3.select("#chart").html(""); // Clear existing content
   const script = document.createElement("script");
   script.src = scriptPath;
@@ -41,31 +56,14 @@ function loadChart(chartId, scriptPath) {
   document.body.appendChild(script);
 }
 
-// Event listeners for toggle buttons
-const coalBtn = document.getElementById("coal-btn");
-coalBtn.addEventListener("click", () => loadChart("chart", "../js/coalres.js"));
-
-const coalMap = document.getElementById("coal-map");
-coalMap.addEventListener("click", () => loadChart("chart", "../js/coalres_map.js"));
-
-const oilBtn = document.getElementById("oil-btn");
-oilBtn.addEventListener("click", () => loadChart("chart", "../js/oilres.js"));
-
-const oilMap = document.getElementById("oil-map");
-oilMap.addEventListener("click", () => loadChart("chart", "../js/oilres_map.js"));
-
-const gasBtn = document.getElementById("gas-btn");
-gasBtn.addEventListener("click", () => loadChart("chart", "../js/natgasres.js"));
-
-const natgasMap = document.getElementById("gas-map");
-natgasMap.addEventListener("click", () => loadChart("chart", "../js/natgasres_map.js"));
-
-
 
 // Load the initial chart (coal by default) - already loaded by including coalres.js first
     // Load the initial chart (coal by default)
     document.addEventListener("DOMContentLoaded", () => {
-      loadChart("chart", "../js/coalres.js");
+      const chartContainer = d3.select("#chart");
+      chartContainer.selectAll(".chart").classed("hidden", false); // Show all charts initially
+      loadChart("chart", "../js/coalres.js"); // Load default chart script again
+      chartContainer.selectAll(".chart").classed("hidden", true); // Hide all charts except default
     });
 </script>
 
