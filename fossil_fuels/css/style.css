@@ -74,6 +74,14 @@ h2{
   padding-left: 25px;
 }
 
+h3{
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: #808080;
+  text-align: left;
+  padding-left: 25px;
+}
+
 circle.static {
     fill: darkslategrey;
 }
