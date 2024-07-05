@@ -22,22 +22,22 @@
 
       function(data) {
 
-        // List of groups (here I have one group per column)
-        var allGroup = d3.map(data, function(d){return(d.Entity)}).keys() // the countries to populate the dropdown
+        // List of countries pulled from the data
+        var all_countries = d3.map(data, function(d){return(d.Entity)}).keys() // the countries to populate the dropdown
 
         var dropdownGroup = svg.append("g")
           .attr("transform", "translate(" + margin.left+ "," + margin.top + ")");
         var dropdownSelection = dropdownGroup.append("select")
           .attr("class", "dropdown")
-          .attr("id", "selectDropdown");
+          .attr("id", "selectCountryDropdown");
     
-        // console.log(allGroup)
+        // console.log(all_countries)
 
         // This is where the PARAMETER and TRIGGER work together to change the scene
-        d3.select("#selectDropdown")
+        d3.select("#selectCountryDropdown")
           .selectAll('theCountries')
         //dropdownSelection.selectAll("option")
-            .data(allGroup)
+            .data(all_countries)
             .enter()
             .append('option')
           .text(function (d) { return d; }) // the country displayed on the dropdown - this is the PARAMETER value for the TRIGGER
@@ -46,7 +46,7 @@
     
         // A color scale: one color for each group
         var myColor = d3.scaleOrdinal()
-          .domain(allGroup)
+          .domain(all_countries)
           .range(d3.schemeSet2);
     
         // Add X axis --> it is a date format
@@ -121,14 +121,14 @@
         var numberFormat = d3.format(".1f");
 
         // Create the line variable: where both the line and the brush take place
-        var dataFilter = data.filter(function(d){return d.Entity==allGroup[0]})
+        var dataFilter = data.filter(function(d){return d.Entity==all_countries[0]})
 
         var line = svg.append('g')
           .attr("clip-path", "url(#clip)")
             // Initialize line with first group of the list
           line.append("path")
                 .datum(dataFilter)
-                // console.log(data.filter(function(d){return d.Entity==allGroup[0]}))
+                // console.log(data.filter(function(d){return d.Entity==all_countries[0]}))
                 .attr("class", "line")
                 .attr("d", d3.line()
                   .x(function(d) { return x(+d.Year) })
@@ -164,11 +164,11 @@
             .attr("class", "brush")
             .call(brush);   
 
-        // A function that update the chart
-        function update(selectedGroup) {
+        // Function tho update the chart
+        function update(selectedCountry) {
 
-          // Create new data with the selection?
-          var dataFilter = data.filter(function(d){return d.Entity==selectedGroup});
+          // Create new data with the selection
+          var dataFilter = data.filter(function(d){return d.Entity==selectedCountry});
           // console.log(dataFilter)
           // Give these new data to update line
 
@@ -182,7 +182,7 @@
                 .x(function(d) { return x(d.Year) })
                 .y(function(d) { return y(+d.primary_energy) })
               )
-              .attr("stroke", function(d){ return myColor(selectedGroup) })
+              .attr("stroke", function(d){ return myColor(selectedCountry) })
               .style("fill", "none")
 
           circleGroup.selectAll("circle")
@@ -250,7 +250,7 @@
         }
     
         // THIS IS A TRIGGER - When the button is changed, run the update function to update the scene
-        d3.select("#selectDropdown").on("change", function(d) {
+        d3.select("#selectCountryDropdown").on("change", function(d) {
             // recover the option that has been chosen
             circleGroup.selectAll("circle").remove()
             textGroup.selectAll("text").remove();
