@@ -180,10 +180,10 @@ const tooltip = d3.select("body").append("div")
     .text(function(d) { return d.key; })
     .on("end", function() {
       // Delay the display of the annotation
-      // transitionsRemaining--;
-      // if (transitionsRemaining === 0) {
-      //   showAnnotations(); // call the function to show annotations after the chart is complete
-      // }
+      transitionsRemaining--;
+      if (transitionsRemaining === 0) {
+         showAnnotations(); // call the function to show annotations after the chart is complete
+      }
     });
 
     // Add an annotation for the highest point, which is Japan
@@ -208,7 +208,7 @@ const tooltip = d3.select("body").append("div")
     console.log(nested_data.length)
     var transitionsRemaining = nested_data.length
 
-    //function showAnnotations() {
+    function showAnnotations() {
       const annotationGroup = svg.append("g");
 
       annotationGroup.append("rect")
@@ -244,7 +244,7 @@ const tooltip = d3.select("body").append("div")
         .attr("stroke", "gray")
         .attr("stroke-width", 1);
 
-    //} // end of annotation function
+    } // end of annotation function
 
     //Add tooltip
     svg.selectAll("circle")
