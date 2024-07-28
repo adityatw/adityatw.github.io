@@ -171,7 +171,7 @@ const tooltip = d3.select("body").append("div")
     .style("font-size", "13px")
     .style("fill", function(d){ return color(d.key); })
     .style("text-anchor", "start")
-    .style("text-shadow", "2px 2px 2px grey")
+    //.style("text-shadow", "2px 2px 2px grey")
     .style("opacity", 0) // Initially hide the text
     .transition()
     .duration(3000)
