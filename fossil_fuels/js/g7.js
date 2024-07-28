@@ -197,11 +197,11 @@ const tooltip = d3.select("body").append("div")
     // var annotationX = xScale(highestJapanEntry.Year) + 5; 
     // var annotationY = yScale(highestJapanPoint) - 5; 
 
-    var annotationX = 480
-    var annotationY = 20
+    var annotationX = 180
+    var annotationY = 12
 
     var numberFormat = d3.format(".1f");
-    var annotationText = "Highest: " + numberFormat(highestJapanPoint) + "%, Japan in " + highestJapanEntry.Year + ".";
+    var annotationText = "Among the G5 countries, Japan had the highest % consumption at: " + numberFormat(highestJapanPoint) + "% in " + highestJapanEntry.Year + ".";
 
     //d3.selectAll("path").transition().duration(2000).ease(d3.easeLinear).end().then(showAnnotations);
     // Initialize the count of remaining transitions
@@ -214,8 +214,8 @@ const tooltip = d3.select("body").append("div")
       annotationGroup.append("rect")
         .attr("x", annotationX - 20)  
         .attr("y", annotationY - 15)  
-        .attr("width", 260)  
-        .attr("height", 30)  
+        .attr("width", 674)  
+        .attr("height", 38)  
         .attr("rx", 5)  
         .attr("ry", 5)
         .attr("fill", "#f5f5f5")
