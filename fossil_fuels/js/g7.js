@@ -201,7 +201,7 @@ const tooltip = d3.select("body").append("div")
     var annotationY = 12
 
     var numberFormat = d3.format(".1f");
-    var annotationText = "Among the G5 countries, Japan had the highest % consumption at: " + numberFormat(highestJapanPoint) + "% in " + highestJapanEntry.Year + ".";
+    var annotationText = "Among the G7 countries, Japan had the highest % consumption at " + numberFormat(highestJapanPoint) + "% in " + highestJapanEntry.Year + ".";
 
     //d3.selectAll("path").transition().duration(2000).ease(d3.easeLinear).end().then(showAnnotations);
     // Initialize the count of remaining transitions
